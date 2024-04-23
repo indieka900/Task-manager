@@ -1,15 +1,20 @@
-const Mongoose  = require("mongoose")
+const mongoose = require("mongoose");
 
-const  connection_string = 'mongodb+srv://owner:xbLgrLR4x2f0jRbH@cluster0.mzmsa2d.mongodb.net/'
+const connectDB = async (url) => {
+    try {
+        await mongoose.connect(url, {
+            useNewUrlParser: true,
+            useCreateIndex: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true,
+        });
+        console.log("Connected to MongoDB successfully!");
+    } catch (error) {
+        console.error(`Error connecting to MongoDB: ${error}`);
+    }
+};
 
-const connectDB = (url) => {
-    return Mongoose.connect(url,{
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true,
-    })
-}
+
 
 
 module.exports = connectDB
